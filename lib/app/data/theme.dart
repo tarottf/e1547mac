@@ -133,6 +133,12 @@ extension M2ThemeData on ThemeData {
     tooltipTheme: theme.tooltipTheme.copyWith(
       waitDuration: const Duration(milliseconds: 400),
     ),
+    snackBarTheme: theme.snackBarTheme.copyWith(
+      behavior: SnackBarBehavior.floating,
+      width: 600,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    ),
     pageTransitionsTheme: SnapshotlessPageTransitionTheme(
       parent: theme.pageTransitionsTheme,
     ),
