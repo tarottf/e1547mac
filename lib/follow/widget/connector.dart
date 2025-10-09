@@ -1,9 +1,8 @@
 import 'package:e1547/client/client.dart';
 import 'package:e1547/follow/follow.dart';
-import 'package:e1547/stream/stream.dart';
+import 'package:e1547/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sub/flutter_sub.dart';
-import 'package:provider/provider.dart';
 
 class FollowConnector extends StatelessWidget {
   const FollowConnector({super.key, required this.child});

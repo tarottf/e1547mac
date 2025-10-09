@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:drift/drift.dart';
 import 'package:e1547/identity/identity.dart';
 import 'package:e1547/shared/shared.dart';
-import 'package:e1547/stream/stream.dart';
 
 class NullToEmptyStringSqlConverter extends TypeConverter<String?, String> {
   const NullToEmptyStringSqlConverter();
