@@ -26,9 +26,13 @@ class HistoryTile extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _HistoryTileHeader(entry: entry),
-                    _HistoryTileImages(entry: entry),
+                    if (entry.category != HistoryCategory.searches)
+                      _HistoryTileDescription(entry: entry),
+                    if (entry.category != HistoryCategory.searches)
+                      _HistoryTileImages(entry: entry),
                   ],
                 ),
               ),
@@ -48,48 +52,53 @@ class _HistoryTileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: TimedText(
-                created: entry.visitedAt,
-                child: DefaultTextStyle(
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(entry.getName(context)),
-                  ),
-                ),
+        Expanded(
+          child: TimedText(
+            created: entry.visitedAt,
+            child: DefaultTextStyle(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(entry.getName(context)),
               ),
             ),
-            _HistoryTileDropdown(entry: entry),
-          ],
+          ),
         ),
-        if (entry.subtitle?.isNotEmpty ?? false)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            child: ExcludeFocus(
-              child: IgnorePointer(
-                child: Opacity(
-                  opacity: 0.7,
-                  child: DText(entry.subtitle!.ellipse(400)),
-                ),
-              ),
-            ),
-          )
-        else
-          const SizedBox(height: 8),
+        _HistoryTileDropdown(entry: entry),
       ],
     );
+  }
+}
+
+class _HistoryTileDescription extends StatelessWidget {
+  const _HistoryTileDescription({required this.entry});
+
+  final History entry;
+
+  @override
+  Widget build(BuildContext context) {
+    if (entry.subtitle?.isNotEmpty ?? false) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: ExcludeFocus(
+          child: IgnorePointer(
+            child: Opacity(
+              opacity: 0.7,
+              child: DText(entry.subtitle!.ellipse(400)),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return const SizedBox(height: 8);
+    }
   }
 }
 
@@ -144,31 +153,10 @@ class _HistoryTileImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: entry.thumbnails.isNotEmpty ? 300 : 150,
+      height: entry.thumbnails.isNotEmpty ? 300 : 0,
       child: entry.thumbnails.isNotEmpty
           ? HistoryImageGrid(images: entry.thumbnails)
-          : Padding(
-              padding: const EdgeInsets.all(4),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Center(
-                    child: DefaultTextStyle(
-                      style: Theme.of(context).textTheme.titleLarge!,
-                      textAlign: TextAlign.center,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Text(entry.getName(context)),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          : const SizedBox.shrink(),
     );
   }
 }
