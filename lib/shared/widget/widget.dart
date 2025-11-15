@@ -10,6 +10,7 @@ export 'divider_tile.dart';
 export 'drawer.dart';
 export 'expandable.dart';
 export 'gallery.dart';
+export 'grouped.dart';
 export 'header.dart';
 export 'link.dart';
 export 'loading.dart';

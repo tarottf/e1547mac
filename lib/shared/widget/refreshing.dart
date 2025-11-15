@@ -213,3 +213,43 @@ class RefreshablePageDefaultHeader extends StatelessWidget {
     );
   }
 }
+
+class PullToRefresh extends StatelessWidget {
+  const PullToRefresh({
+    super.key,
+    required this.child,
+    required this.onRefresh,
+  });
+
+  final Widget child;
+  final Future<void> Function() onRefresh;
+
+  @override
+  Widget build(BuildContext context) {
+    return SubValue(
+      create: () => RefreshController(),
+      builder: (context, refreshController) => CallbackShortcuts(
+        bindings: {
+          const SingleActivator(LogicalKeyboardKey.f5): () => refreshController
+              .requestRefresh(duration: const Duration(milliseconds: 100)),
+        },
+        child: FocusScope(
+          autofocus: true,
+          child: SmartRefresher(
+            controller: refreshController,
+            onRefresh: () async {
+              try {
+                await onRefresh();
+                refreshController.refreshCompleted();
+              } on Object {
+                refreshController.refreshFailed();
+              }
+            },
+            header: const ClassicHeader(),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
