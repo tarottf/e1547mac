@@ -6,14 +6,14 @@
     <td width="80%">
       <h1>e1547</h1>
       <h4>A sophisticated e621 browser</h4>
-      <a href="https://github.com/clragon/e1547/commits/master"><img src="https://img.shields.io/github/commit-activity/m/clragon/e1547"></a>
-      <a href="https://github.com/clragon/e1547/commits/master"><img src="https://img.shields.io/github/last-commit/clragon/e1547"></a>
-      <a href="blob/master/LICENSE"><img src="https://img.shields.io/github/license/clragon/e1547"></a>
+      <a href="https://github.com/clynamic/e1547/commits/master"><img src="https://img.shields.io/github/commit-activity/m/clynamic/e1547"></a>
+      <a href="https://github.com/clynamic/e1547/commits/master"><img src="https://img.shields.io/github/last-commit/clynamic/e1547"></a>
+      <a href="blob/master/LICENSE"><img src="https://img.shields.io/github/license/clynamic/e1547"></a>
       <a href="https://discord.gg/MRwKGqfmUz"><img src="https://img.shields.io/discord/763321712766877727.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"></a>
       <a href="https://e1547.clynamic.net"><img src="https://img.shields.io/badge/website-clynamic-FDB245"></a>
       <a href="https://f-droid.org/packages/net.e1547"><img src="https://img.shields.io/f-droid/v/net.e1547"></a>
       <a href="https://play.google.com/store/apps/details?id=net.e1547"><img src="https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dnet.e1547%26gl%3DUS%26hl%3Den%26l%3DGoogle%2520Play%26m%3D%24version"></a>
-      <a href="https://github.com/clragon/e1547/releases/latest"><img src="https://img.shields.io/github/downloads/clragon/e1547/total"></a>
+      <a href="https://github.com/clynamic/e1547/releases/latest"><img src="https://img.shields.io/github/downloads/clynamic/e1547/total"></a>
     </td>
   </tr>
 </table>
@@ -44,7 +44,7 @@
 ## Download
 
 APK and IPA files can be found over at
-the [releases](https://github.com/clragon/e1547/releases/latest).
+the [releases](https://github.com/clynamic/e1547/releases/latest).
 
 You can also find the app on the Google PlayStore:
 
@@ -69,7 +69,7 @@ via a tool like [AppVerifier](https://github.com/soupslurpr/AppVerifier).
 
 or
 
-1. Download the [latest APK](https://github.com/clragon/e1547/releases/latest)
+1. Download the [latest APK](https://github.com/clynamic/e1547/releases/latest)
 2. Open it on your Android device with a file manager
 3. Click install
 
@@ -87,7 +87,7 @@ The app is not available in the AppStore.
 
 or
 
-- Jailbreak your device and install the [IPA](https://github.com/clragon/e1547/releases/latest) directly
+- Jailbreak your device and install the [IPA](https://github.com/clragon/clynamic/releases/latest) directly
 
 ## Compilation
 
@@ -101,13 +101,14 @@ You can compile the app from source:
 
 Is the app currently under development?
 
-**No**
+The project is currently under limited support. I no longer have as much time to develop this project as I used to.  
+If you would like to help out, drop by in [#167](https://github.com/clynamic/e1547/issues/167) or shoot us a message!
 
-e1547 is now end of life. Thank you to everyone who stopped by over the years!
+<a href="https://github.com/clynamic/e1547/commits/master"><img src="https://img.shields.io/github/last-commit/clynamic/e1547"></a>
 
-<a href="https://github.com/clragon/e1547/commits/master"><img src="https://img.shields.io/github/last-commit/clragon/e1547"></a>
+## Community
 
-For archival reasons, here are the communities where the app previously was discussed:
+Places to talk about this thing.
 
 Discord:
 
@@ -119,15 +120,15 @@ Forum thread:
 
 Github issues:
 
-[![GitHub issues](https://img.shields.io/github/issues/clragon/e1547)](https://github.com/clragon/e1547/issues)
+[![GitHub issues](https://img.shields.io/github/issues/clynamic/e1547)](https://github.com/clynamic/e1547/issues)
 
 ## Credit
 
 [<img src="https://github.com/clragon.png" width="100px;"/>](https://github.com/clragon)
 
-I am [clragon](https://github.com/clragon)! I wrote the code for this app.
+I am [clragon](https://github.com/clragon)! I wrote (most of) the code for this app.
 
-This was a passion project. If you enjoyed using it, I am glad you did!
+This is a passion project. If you enjoy using it, I am glad you do!
 
 #### Additional thanks to
 
