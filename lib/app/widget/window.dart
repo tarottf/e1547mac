@@ -1,3 +1,4 @@
+import 'dart:io'; // Required for platform detection
 import 'package:e1547/app/app.dart';
 import 'package:e1547/settings/settings.dart';
 import 'package:e1547/shared/shared.dart';
@@ -102,60 +103,65 @@ class _WindowFrameState extends State<WindowFrame> with WindowListener {
                     onTapDown: (details) => manager.startDragging(),
                     child: Row(
                       children: [
-                        const Padding(
+                        // Pushes everything to the center/right on macOS
+                        if (Platform.isMacOS) const Spacer(),
+
+                        Padding(
                           padding: EdgeInsets.only(
                             top: 4,
                             bottom: 4,
-                            left: 12,
+                            left: Platform.isMacOS ? 0 : 12,
                             right: 8,
                           ),
-                          child: AppIcon(radius: 8),
+                          child: const AppIcon(radius: 8),
                         ),
-                        Expanded(
-                          child: AnimatedDefaultTextStyle(
-                            style: Theme.of(context).textTheme.bodyMedium!
-                                .copyWith(
-                                  color: isFocused
-                                      ? null
-                                      : dimTextColor(context),
-                                ),
-                            duration: defaultAnimationDuration,
-                            child: Text(AppInfo.instance.appName),
-                          ),
+                        AnimatedDefaultTextStyle(
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                color: isFocused
+                                    ? null
+                                    : dimTextColor(context),
+                              ),
+                          duration: defaultAnimationDuration,
+                          child: Text(AppInfo.instance.appName),
                         ),
+
+                        // Balances the Spacer to keep the logo centered on macOS
+                        if (Platform.isMacOS) const Spacer(),
                       ],
                     ),
                   ),
                 ),
-                Row(
-                  children: [
-                    TitleBarButton(
-                      color: Colors.green,
-                      icon: const Icon(Icons.minimize),
-                      onPressed: manager.minimize,
-                    ),
-                    TitleBarButton(
-                      color: Colors.orange,
-                      icon: isMaximized
-                          ? const Icon(Icons.fullscreen_exit)
-                          : const Icon(Icons.fullscreen),
-                      onPressed: () async {
-                        if (await manager.isFullScreen()) {
-                          await manager.setFullScreen(false);
-                        } else if (await manager.isMaximized()) {
-                          await manager.unmaximize();
-                        } else {
-                          await manager.maximize();
-                        }
-                      },
-                    ),
-                    TitleBarButton(
-                      color: Colors.red,
-                      icon: const Icon(Icons.close),
-                      onPressed: manager.close,
-                    ),
-                  ],
-                ),
+                // Window controls (minimize, maximize, close) - hidden on macOS
+                if (!Platform.isMacOS)
+                  Row(
+                    children: [
+                      TitleBarButton(
+                        color: Colors.green,
+                        icon: const Icon(Icons.minimize),
+                        onPressed: manager.minimize,
+                      ),
+                      TitleBarButton(
+                        color: Colors.orange,
+                        icon: isMaximized
+                            ? const Icon(Icons.fullscreen_exit)
+                            : const Icon(Icons.fullscreen),
+                        onPressed: () async {
+                          if (await manager.isFullScreen()) {
+                            await manager.setFullScreen(false);
+                          } else if (await manager.isMaximized()) {
+                            await manager.unmaximize();
+                          } else {
+                            await manager.maximize();
+                          }
+                        },
+                      ),
+                      TitleBarButton(
+                        color: Colors.red,
+                        icon: const Icon(Icons.close),
+                        onPressed: manager.close,
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),
@@ -185,14 +191,14 @@ class TitleBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconButton(
-    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-    constraints: const BoxConstraints(),
-    hoverColor: color?.withAlpha(180),
-    highlightColor: color,
-    icon: icon,
-    onPressed: onPressed,
-    splashRadius: 24,
-  );
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+        constraints: const BoxConstraints(),
+        hoverColor: color?.withAlpha(180),
+        highlightColor: color,
+        icon: icon,
+        onPressed: onPressed,
+        splashRadius: 24,
+      );
 }
 
 class WindowShortcuts extends StatelessWidget {
